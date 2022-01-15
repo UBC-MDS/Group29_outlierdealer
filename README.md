@@ -3,8 +3,15 @@
 ## Overview
 As data rarely comes ready to be used and analyzed for machine learning right away, this package aims to help speed up the process of cleaning and doing initial exploratory data analysis specific to outliers. The package focuses on the tasks of identifying univariate outliers, providing summary of outliers like count, range of outliers, visualize them and giving functionality to remove them from data.
 
+**Milestone1 Link**: <https://github.com/UBC-MDS/Group29_outlierdealer>
+
+**Authors**:  Qingqing Song, Karanpreet Kaur, Linhan Cai
+
+- TODO
+
 ## Installation
 
+This package can be installed from PyPI using the terminal command:
 ```bash
 $ pip install py_outlier_utils
 ```
@@ -26,11 +33,25 @@ While Python packages with similar functionalities exist, this package aims to p
 
 - TODO
 
+## Dependencies
+
+-   Python 3.9 and Python packages:
+
+    -   pandas==1.3.5
+    -   requests==2.27.1
+
 ## Contributing
 
 This package is authored by Karanpreet Kaur, Linhan Cai, Qingqing Song as part of the course project in DSCI-524 (UBC-MDS program). You can see the list of all contributors in the contributors tab.
 
 We welcome and recognize all contributions. If you wish to participate, please review our [Contributing guidelines](CONTRIBUTING.md)
+
+## Contributors
+
+Group 29 Contributors:
+- Qingqing Song: @scarlqq
+- Karanpreet Kaur: @karanpreetkaur
+- Linhan Cai: @lipcai
 
 ## License
 

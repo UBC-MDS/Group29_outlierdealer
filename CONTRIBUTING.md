@@ -40,10 +40,10 @@ If you are proposing a feature:
 
 ## Get Started!
 
-Ready to contribute? Here's how to set up `outliers` for local development.
+Ready to contribute? Here's how to set up `py_outlier_utils` for local development.
 
-1. Download a copy of `outliers` locally.
-2. Install `outliers` using `poetry`:
+1. Download a copy of `py_outlier_utils` locally.
+2. Install `py_outlier_utils` using `poetry`:
 
     ```console
     $ poetry install
@@ -69,5 +69,5 @@ Before you submit a pull request, check that it meets these guidelines:
 
 ## Code of Conduct
 
-Please note that the `outliers` project is released with a 
-Code of Conduct. By contributing to this project you agree to abide by its terms.
+Please note that the `py_outlier_utils` project is released with a [Contributor Code of
+Conduct](CONDUCT.md) Code of Conduct. By contributing to this project you agree to abide by its terms.

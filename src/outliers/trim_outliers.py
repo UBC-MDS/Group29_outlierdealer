@@ -24,8 +24,7 @@ def trim_outliers(dataframe, columns=None, identifier='Z_score', method='trim'):
     >>>    'SepalWidthCm' : [1.4, 1.4, 20, 2.0, 0.7, 1.6, 1.2, 14, 1.8, 1.5, 2.1],
     >>>    'PetalWidthCm' : [0.2, 0.2, 0.2, 0.3, 0.4, 0.5, 0.5, 0.6, 0.4, 0.2, 5]
     >>> })
-    >>> trim_outliers(df, columns=['SepalLengthCm', 'SepalWidthCm'],identifier='Z_score', method='trim')
+    >>> trim_outliers(df, columns=['SepalLengthCm', 'SepalWidthCm', 'PetalWidthCm'],identifier='Z_score', method='trim')
     
-    'SepalLengthCm' : [ 4.9, 5.5, 5.1, 5.4, 5.2, 5.3, 5.1],
-    'SepalWidthCm' : [1.4, 1.4, 2.0, 0.7, 1.6, 1.2, 14, 1.8, 1.5, 2.1],
+    'PetalWidthCm' : [0.2, 0.2, 0.2, 0.3, 0.4, 0.5, 0.5, 0.6, 0.4, 0.2, 5]
     """

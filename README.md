@@ -14,7 +14,7 @@ The three functions contained in this package are as follows:
 
 - `outlier_identifier`: A function to identify outliers in the dataset and provide their summary as an output
 - `visualize_outliers`: A function to generate the eda plots highlighting outliers providing additional functionality to visualize them
-- `drop_outliers`: A function to generate outlier free dataset.
+- `trim_outliers`: A function to generate outlier free dataset by imputing them with mean, median or trim entire row with outlier from dataset.
 
 ## Our Place in the Python Ecosystem
 While Python packages with similar functionalities exist, this package aims to provide summary, visualization of outliers in a single package with an additional functionality to generate outlier-free dataset. Few packages with similar functionality are as follows:

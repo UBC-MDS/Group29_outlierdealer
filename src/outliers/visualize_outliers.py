@@ -3,7 +3,7 @@ import altair as alt
 
 def visualize_outliers(dataframe, columns=None, type='violin'):
     """
-    A function that plot the distribution of the give data.
+    A function that plot the distribution of the given data.
     
     Parameters
     ----------

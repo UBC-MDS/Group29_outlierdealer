@@ -1,4 +1,4 @@
-from py_outlier_utils.outliers import visualize_outliers
+from outliers.visualize_outliers import visualize_outliers
 import pandas as pd
 import numpy as np
 import pytest
@@ -22,12 +22,12 @@ def test_visualize_outliers():
     ), "Altair Chart object should be returned."
 
     ## Test the exceptions of invalid input
-    with pytest.raises(Exception):
-        visualize_outliers([5, 7, 2])
+    with pytest.raises(TypeError):
+        visualize_outliers("572")
 
-    with pytest.raises(Exception):
+    with pytest.raises(TypeError):
         visualize_outliers(df(), column = "gsgs")
 
-    with pytest.raises(Exception):
+    with pytest.raises(ValueError):
         visualize_outliers(df(), type='scatter')
         

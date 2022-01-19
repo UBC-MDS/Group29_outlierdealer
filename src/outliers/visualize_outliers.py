@@ -1,3 +1,6 @@
+import pandas as pd
+import altair as alt
+
 def visualize_outliers(dataframe, columns=None, type='violin'):
     """
     A function that plot the distribution of the give data.
@@ -93,7 +96,7 @@ def visualize_outliers(dataframe, columns=None, type='violin'):
         violinbox = alt.layer(violin, boxplot, data=dfmelt).facet('variable:N', columns=5).resolve_scale(x=alt.ResolveMode("independent"))
         return violinbox
     
-    else type == 'boxplot':
+    elif type == 'boxplot':
         boxplot = alt.Chart(dfmelt).mark_boxplot().encode(
                     alt.X(title = None),
                     alt.Y("value"),

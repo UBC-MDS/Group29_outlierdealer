@@ -16,8 +16,9 @@ def outlier_identifier(dataframe, columns=None, identifier = 'IQR', return_df=Fa
 
     Returns
     -------
-    None (Prints output) if return_df = False , 
-    pandas.core.frame.DataFrame (a dataframe with the summary of the outlier identified by the method) if return_df = True
+    pandas.core.frame.DataFrame 
+    (a dataframe with the summary of the outlier identified by the method) if return_df = False , 
+    (a dataframe with additional column having if row has outlier or not) if return_df = True
     
     Examples
     --------

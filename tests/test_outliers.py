@@ -1,8 +1,7 @@
-# from outliers import outliers
 import pandas as pd
 from pandas._testing import assert_frame_equal
 import numpy as np
-from pytest import raises
+import pytest
 from outliers.outliers import outlier_identifier
 
 # Arrange
@@ -56,7 +55,7 @@ def test_outlier_identifier(input, summary_Zscore, summary_IQR, outlier_Zscore, 
     6 tests in total.
     """
 
-    # Exception Handling test cases
+    ## Exception Handling test cases
 
     # Tests whether data is not of dataframe raises TypeError
     with raises(TypeError):
@@ -73,3 +72,29 @@ def test_outlier_identifier(input, summary_Zscore, summary_IQR, outlier_Zscore, 
     # Tests whether wrong identifier passed raises ValueError
     with raises(ValueError):
         outlier_identifier(input, columns= ['SepalLengthCm'], identifier='both')
+
+    # Tests whether empty dataframe or dataframe with all NAN raises ValueError
+    with raises(ValueError):
+        outlier_identifier(pd.DataFrame(), columns= ['SepalLengthCm'])
+
+
+    ## Unit test cases
+
+    # Test if output with identifier = 'Z_score' and return_df = False (default) matches with expected output summary_Zscore 
+    # (checks if condition - 1)
+    assert outlier_identifier(input, identifier='Z_score').equals(summary_Zscore), "The returned dataframe using outlier_identifier is not correct"
+
+    # Test if output with identifier = 'Z_score' and return_df = True matches with expected output outlier_Zscore 
+    # (checks if condition - 2)
+    assert outlier_identifier(input, identifier='Z_score', return_df=True).equals(outlier_Zscore), "The returned dataframe using outlier_identifier is not correct"
+
+    # Test if output with identifier = 'IQR' (default) and return_df = False (default) matches with expected output summary_IQR 
+    # (checks if condition - 3)
+    assert outlier_identifier(input).equals(summary_IQR), "The returned dataframe using outlier_identifier is not correct"
+
+    # Test if output with identifier = 'IQR' (default) and return_df = True matches with expected output outlier_IQR 
+    # (checks if condition - 4)
+    assert outlier_identifier(input, return_df=True).equals(outlier_IQR), "The returned dataframe using outlier_identifier is not correct"
+    
+    # Test if output has all numeric columns from the list of columns passed 
+    assert outlier_identifier(input, columns=['SepalLengthCm', 'SepalWidthCm', 'class']).columns.tolist() == ['SepalLengthCm', 'SepalWidthCm'], "The columns returned in the dataframe is not correct"

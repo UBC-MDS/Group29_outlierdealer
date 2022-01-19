@@ -68,15 +68,15 @@ def outlier_identifier(dataframe, columns=None, identifier = 'IQR', return_df=Fa
 
     if columns is None:
         columns = df.columns
-    columns = dataframe.select_dtypes('number').columns
-    
-    df_selected = dataframe[columns]
+    df_filtered = dataframe[columns]
+    numeric_columns = df_filtered.select_dtypes('number').columns
+    df_selected = df_filtered[numeric_columns]
     df_selected['outlier'] = False
     
-    output = pd.DataFrame(columns=columns, index=['outlier_count', 'outlier_percentage', 'mean', 'median', 'std', 'lower_range', 'upper_range'])
+    output = pd.DataFrame(columns=numeric_columns, index=['outlier_count', 'outlier_percentage', 'mean', 'median', 'std', 'lower_range', 'upper_range'])
     if identifier == 'Z_score':
         if return_df == False:
-            for col in columns:
+            for col in numeric_columns:
                 std = df_selected[col].std()
                 mean = df_selected[col].mean()
                 col_outliers = df_selected[np.abs(df_selected[col] - mean) > std*3]
@@ -100,7 +100,7 @@ def outlier_identifier(dataframe, columns=None, identifier = 'IQR', return_df=Fa
                         output.loc['upper_range', col] = (min(upper_range[col]), max(upper_range[col]))
             return output
         else:
-            for col in columns:
+            for col in numeric_columns:
                 std = df_selected[col].std()
                 mean = df_selected[col].mean()
                 df_selected.loc[np.abs((df_selected[col] - mean)) > std*3, 'outlier'] = True
@@ -109,7 +109,7 @@ def outlier_identifier(dataframe, columns=None, identifier = 'IQR', return_df=Fa
 
     elif identifier == 'IQR':
         if return_df == False:
-            for col in columns:
+            for col in numeric_columns:
                 std = df_selected[col].std()
                 mean = df_selected[col].mean()
                 iqr = np.percentile(df_selected[col], 75) - np.percentile(df_selected[col], 25)
@@ -134,7 +134,7 @@ def outlier_identifier(dataframe, columns=None, identifier = 'IQR', return_df=Fa
             return output
 
         else:
-            for col in columns:
+            for col in numeric_columns:
                 std = df_selected[col].std()
                 mean = df_selected[col].mean()
                 iqr = np.percentile(df_selected[col], 75) - np.percentile(df_selected[col], 25)

@@ -67,7 +67,7 @@ def outlier_identifier(dataframe, columns=None, identifier = 'IQR', return_df=Fa
         raise TypeError(f"passed return_df is of type {type(return_df).__name__}, should be bool with value as True or False")
 
     if columns is None:
-        columns = df.columns
+        columns = dataframe.columns
     df_filtered = dataframe[columns]
     numeric_columns = df_filtered.select_dtypes('number').columns
     df_selected = df_filtered[numeric_columns]

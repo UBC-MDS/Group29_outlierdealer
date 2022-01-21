@@ -96,12 +96,12 @@ def visualize_outliers(dataframe, columns=None, type='violin'):
         violinbox = alt.layer(violin, boxplot, data=dfmelt).facet('variable:N', columns=5).resolve_scale(x=alt.ResolveMode("independent"))
         return violinbox
     
-    elif type == 'boxplot':
+    else:
         boxplot = alt.Chart(dfmelt).mark_boxplot().encode(
                     alt.X(title = None),
                     alt.Y("value"),
                     alt.Color("variable", legend = None) 
                 ).properties(
                     width=100
-                ).facet('variable:N', columns=5)
+                ).facet('variable:N', columns=4)
         return boxplot

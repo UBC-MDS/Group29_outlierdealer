@@ -3,7 +3,7 @@ from pandas._testing import assert_frame_equal
 import numpy as np
 import pytest
 from pytest import raises
-from outliers.outliers import trim_outliers
+from outliers.trim_outliers import trim_outliers
 
 
 def test_trim_outliers():

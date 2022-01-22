@@ -126,7 +126,6 @@ def test_trim_outliers():
         'SepalWidthCm': [1.4, 1.4, 2.0, 0.7, 1.2, 1.4, 1.8, 1.5],
         'PetalWidthCm' :[0.2, 0.2, 0.3, 0.4, 0.5, 0.6, 0.4, 0.2],
     })
-
     # Test if the imput is not dataFrame
     with raises(TypeError):
         trim_outliers("not dataframe")
@@ -139,35 +138,23 @@ def test_trim_outliers():
     with raises(Exception):
         trim_outliers(test_df, columns=["not in"])
 
-    # Test if dataframe contains non-numeric column, but the user want to do it for all columns.
-    with raises(Exception):
-        trim_outliers(test_df, method = "trim")
-
     # Test if method input is not one of three methods provided
     with raises(Exception):
         trim_outliers(test_df, columns=["SepalLengthCm"], method="no")
-
-    # Test if column selected included non-numeric columns
-    with raises(Exception):
-        trim_outliers(test_df, columns=["Species"])
-
+        
     assert pd.DataFrame.equals(
-        trim_outliers(test_df, test_column), trim_output
-    ), "Default test not pass"
+        trim_outliers(test_df, test_column, method="mean"),
+        mean_output,
+    ), "The mean method is not correct"     
+
     assert pd.DataFrame.equals(
         trim_outliers(test_df, test_column, method="median"),
         median_output,
     ), "The median method is not correct"
-    assert pd.DataFrame.equals(
-        trim_outliers(test_df, test_column, method="mean"),
-        mean_output,
-    ), "The mean method is not correct"
+    
     assert pd.DataFrame.equals(
         trim_outliers(
             test_df, columns=["SepalLengthCm"], method="mean"
         ),
         column_output,
     ), "The selected column method is not correct"
-    assert pd.DataFrame.equals(
-        trim_outliers(numeric_only_df, method = "trim"), numeric_only_out
-    ), "The numeric only method is not correct"

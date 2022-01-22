@@ -1,8 +1,8 @@
 import pandas as pd
 import numpy as np
+from outliers.outliers import outlier_identifier
 
-def trim_outliers(dataframe, columns=None, identifier='Z_score', method='trim'):
-
+def trim_outliers(dataframe, columns=None, identifier='IQR', method='trim'):
     """
     A function to generate outlier free dataset by imputing them with mean, median or trim entire row with outlier from dataset.
      ----------
@@ -23,7 +23,6 @@ def trim_outliers(dataframe, columns=None, identifier='Z_score', method='trim'):
     Return
     -------
     pandas.core.frame.DataFrame
-
         a dataframe which the outlier has already process by the chosen method.
         
     Examples
@@ -46,7 +45,6 @@ def trim_outliers(dataframe, columns=None, identifier='Z_score', method='trim'):
     6	5.2	                1.8	                0.4
     7	5.3	                1.5	                0.2
     """
-
 
     # Handle dataframe type error (Check if dataframe is of type Pandas DataFrame)
     if not isinstance(dataframe, pd.DataFrame):
@@ -74,75 +72,28 @@ def trim_outliers(dataframe, columns=None, identifier='Z_score', method='trim'):
 
 
     if columns is None:
-        columns = dataframe.columns
-    df_filtered = dataframe[columns]
-    numeric_columns = df_filtered.select_dtypes('number').columns
-    df_selected = df_filtered[numeric_columns]
-    df_selected['outlier'] = False
-    
-    output = pd.DataFrame(columns=numeric_columns)
-    if identifier == 'Z_score':
-        df = dataframe.copy()
-        target_columns = []
-        if columns is None:
-            target_columns = list(df.columns.values.tolist())
-        else:
-            target_columns = columns
+        columns = list(dataframe.columns)
+    numeric_columns = dataframe[columns].select_dtypes('number').columns
 
-        outlier_index = []
-        for column in target_columns:
-            current_column = df[column]
-            mean = np.mean(current_column)
-            std = np.std(current_column)
-            threshold = 3
+    df = outlier_identifier(dataframe, columns=columns, identifier=identifier, return_df=True)
+    if method == 'trim':
+        outlier_index = df[df['outlier']==True].index
+        dataframe = dataframe.drop(outlier_index)
 
-            for i in range(len(current_column)):
-                current_item = current_column[i]
-                z = (current_item - mean) / std
-                if z >= threshold:
-                    if i not in outlier_index:
-                        outlier_index.append(i)
-                    if method == "mean":
-                        df.at[i, column] = round(mean, 2)
-                    if method == "median":
-                        df.at[i, column] = np.median(current_column)
+    elif method == 'mean':
+        col_list=[0]
+        for col in numeric_columns:
+            col_list[0] = col
+            df_col = outlier_identifier(dataframe, columns=col_list, identifier=identifier, return_df = True)
+            outlier_index = df_col[df_col['outlier']==True].index
+            dataframe.at[outlier_index, col] = round(np.mean(dataframe[col]), 2)
 
-        if method == "trim":
-            df = df.drop(outlier_index)
+    elif method == 'median':
+        col_list=[0]
+        for col in numeric_columns:
+            col_list[0] = col
+            df_col = outlier_identifier(dataframe, columns=col_list, identifier=identifier, return_df = True)
+            outlier_index = df_col[df_col['outlier']==True].index
+            dataframe.at[outlier_index, col] = round(np.median(dataframe[col]), 2)
 
-        df.index = range(len(df))
-        return df
-
-
-    elif identifier == 'IQR':
-        df = dataframe.copy()
-        target_columns = []
-        if columns is None:
-            target_columns = list(df.columns.values.tolist())
-        else:
-            target_columns = columns
-
-        outlier_index = []
-        for column in target_columns:
-            current_column = df[column]
-            mean = np.mean(current_column)
-            std = np.std(current_column)
-
-            for i in range(len(current_column)):
-                current_item = current_column[i]
-                iqr = np.percentile(current_column, 75) - np.percentile(current_column, 25)
-                outlier_index = df_selected[np.abs((current_item - mean) / std) > 1.5*iqr]
-
-                if i not in outlier_index:
-                    outlier_index.append(i)
-                else:
-                    if method == "mean":
-                        df.at[i, column] = round(mean, 2)
-                    if method == "median":
-                        df.at[i, column] = np.median(current_column)
-
-        if method == "trim":
-            df = df.drop(outlier_index)
-
-        df.index = range(len(df))
-        return df
+    return dataframe

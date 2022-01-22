@@ -23,7 +23,8 @@ def trim_outliers(dataframe, columns=None, identifier='Z_score', method='trim'):
     Return
     -------
     pandas.core.frame.DataFrame
-        a dataframe which the outlier has already process by the chosen method
+
+        a dataframe which the outlier has already process by the chosen method.
         
     Examples
     --------

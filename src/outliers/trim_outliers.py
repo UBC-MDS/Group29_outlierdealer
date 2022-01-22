@@ -71,29 +71,27 @@ def trim_outliers(dataframe, columns=None, identifier='IQR', method='trim'):
         raise Exception("The method must be -trim- or -median- or -mean-")
 
 
+    dataframe_copy = dataframe.copy()
+    
     if columns is None:
         columns = list(dataframe.columns)
     numeric_columns = dataframe[columns].select_dtypes('number').columns
-
     df = outlier_identifier(dataframe, columns=columns, identifier=identifier, return_df=True)
     if method == 'trim':
         outlier_index = df[df['outlier']==True].index
-        dataframe = dataframe.drop(outlier_index)
-
+        dataframe_copy = dataframe_copy.drop(outlier_index)
     elif method == 'mean':
         col_list=[0]
         for col in numeric_columns:
             col_list[0] = col
             df_col = outlier_identifier(dataframe, columns=col_list, identifier=identifier, return_df = True)
             outlier_index = df_col[df_col['outlier']==True].index
-            dataframe.at[outlier_index, col] = round(np.mean(dataframe[col]), 2)
-
+            dataframe_copy.at[outlier_index, col] = round(np.mean(dataframe[col]), 2)
     elif method == 'median':
         col_list=[0]
         for col in numeric_columns:
             col_list[0] = col
             df_col = outlier_identifier(dataframe, columns=col_list, identifier=identifier, return_df = True)
             outlier_index = df_col[df_col['outlier']==True].index
-            dataframe.at[outlier_index, col] = round(np.median(dataframe[col]), 2)
-
-    return dataframe
+            dataframe_copy.at[outlier_index, col] = round(np.median(dataframe[col]), 2)
+    return dataframe_copy

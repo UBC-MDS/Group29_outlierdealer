@@ -86,12 +86,12 @@ def trim_outliers(dataframe, columns=None, identifier='IQR', method='trim'):
             col_list[0] = col
             df_col = outlier_identifier(dataframe, columns=col_list, identifier=identifier, return_df = True)
             outlier_index = df_col[df_col['outlier']==True].index
-            dataframe_copy.at[outlier_index, col] = round(np.mean(dataframe[col]), 2)
+            dataframe_copy.loc[outlier_index, col] = round(np.mean(dataframe[col]), 2)
     elif method == 'median':
         col_list=[0]
         for col in numeric_columns:
             col_list[0] = col
             df_col = outlier_identifier(dataframe, columns=col_list, identifier=identifier, return_df = True)
             outlier_index = df_col[df_col['outlier']==True].index
-            dataframe_copy.at[outlier_index, col] = round(np.median(dataframe[col]), 2)
+            dataframe_copy.loc[outlier_index, col] = round(np.median(dataframe[col]), 2)
     return dataframe_copy

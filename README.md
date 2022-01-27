@@ -1,4 +1,4 @@
-# py_outlier_utils
+# py_outlier_utils 
 
 [![ci-cd](https://github.com/UBC-MDS/py_outliers_utils/actions/workflows/ci-cd.yml/badge.svg)](https://github.com/UBC-MDS/py_outliers_utils/actions/workflows/ci-cd.yml)
 

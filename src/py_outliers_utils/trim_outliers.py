@@ -1,6 +1,6 @@
 import pandas as pd
 import numpy as np
-from py_outlier_utils.outliers import outlier_identifier
+from py_outliers_utils.outliers import outlier_identifier
 
 def trim_outliers(dataframe, columns=None, identifier='IQR', method='trim'):
     """

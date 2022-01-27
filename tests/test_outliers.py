@@ -3,7 +3,7 @@ from pandas._testing import assert_frame_equal
 import numpy as np
 import pytest
 from pytest import raises
-from outliers.outliers import outlier_identifier
+from py_outlier_utils.outliers import outlier_identifier
 
 # Arrange
 @pytest.fixture

@@ -1,5 +1,7 @@
 # py_outlier_utils
 
+[![ci-cd](https://github.com/UBC-MDS/py_outliers_utils/actions/workflows/ci-cd.yml/badge.svg)](https://github.com/UBC-MDS/py_outliers_utils/actions/workflows/ci-cd.yml)
+
 ## Overview
 As data rarely comes ready to be used and analyzed for machine learning right away, this package aims to help speed up the process of cleaning and doing initial exploratory data analysis specific to outliers. The package focuses on the tasks of identifying univariate outliers, providing summary of outliers like count, range of outliers, visualize them and giving functionality to remove them from data.
 

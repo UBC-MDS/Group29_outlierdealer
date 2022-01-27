@@ -26,7 +26,7 @@ While Python packages with similar functionalities exist, this package aims to p
 
 ## Usage
 
-- TODO
+`py_outlier_utils` can be used to deal with the outliers in a dataset and plot the distribution of the dataset. More information can be found in [Example usage](https://py-outliers-utils.readthedocs.io/en/latest/example.html).
 
 ## Contributing
 

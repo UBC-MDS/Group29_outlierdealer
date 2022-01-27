@@ -1,4 +1,5 @@
 [tool.poetry]
+
 name = "py_outlier_utils"
 version = "0.1.0"
 description = "Dealing with outliers"

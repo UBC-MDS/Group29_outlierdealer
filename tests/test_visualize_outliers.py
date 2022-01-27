@@ -1,5 +1,5 @@
 from cmath import nan
-from outliers.visualize_outliers import visualize_outliers
+from py_outlier_utils.visualize_outliers import visualize_outliers
 import pandas as pd
 import numpy as np
 from pytest import raises

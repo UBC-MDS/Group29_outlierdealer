@@ -107,7 +107,7 @@ def outlier_identifier(dataframe, columns=None, identifier = 'IQR', return_df=Fa
             return df_selected
 
 
-    elif identifier == 'IQR':
+    else:
         if return_df == False:
             for col in numeric_columns:
                 std = df_selected[col].std()

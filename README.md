@@ -1,4 +1,4 @@
-# py_outlier_utils 
+# py_outliers_utils 
 
 [![ci-cd](https://github.com/UBC-MDS/py_outliers_utils/actions/workflows/ci-cd.yml/badge.svg)](https://github.com/UBC-MDS/py_outliers_utils/actions/workflows/ci-cd.yml)
 
@@ -8,9 +8,8 @@ As data rarely comes ready to be used and analyzed for machine learning right aw
 ## Installation
 
 ```bash
-$ pip install py_outlier_utils
+$ pip install py_outliers_utils
 ```
-
 ## Functions
 The three functions contained in this package are as follows:
 
@@ -26,7 +25,15 @@ While Python packages with similar functionalities exist, this package aims to p
 
 ## Usage
 
-`py_outlier_utils` can be used to deal with the outliers in a dataset and plot the distribution of the dataset. More information can be found in [Example usage](https://py-outliers-utils.readthedocs.io/en/latest/example.html).
+To import the package and check the version:
+
+```bash
+import py_outliers_utils
+
+print(py_outliers_utils.__version__)
+```
+
+`py_outliers_utils` can be used to deal with the outliers in a dataset and plot the distribution of the dataset. More information can be found in the [documentation](https://py-outliers-utils.readthedocs.io/en/latest/example.html).
 
 ## Contributing
 
@@ -36,8 +43,8 @@ We welcome and recognize all contributions. If you wish to participate, please r
 
 ## License
 
-`py_outlier_utils` is licensed under the terms of the MIT license.
+`py_outliers_utils` is licensed under the terms of the MIT license.
 
 ## Credits
 
-`py_outlier_utils` was created with [`cookiecutter`](https://cookiecutter.readthedocs.io/en/latest/) and the `py-pkgs-cookiecutter` [template](https://github.com/py-pkgs/py-pkgs-cookiecutter).
+`py_outliers_utils` was created with [`cookiecutter`](https://cookiecutter.readthedocs.io/en/latest/) and the `py-pkgs-cookiecutter` [template](https://github.com/py-pkgs/py-pkgs-cookiecutter).

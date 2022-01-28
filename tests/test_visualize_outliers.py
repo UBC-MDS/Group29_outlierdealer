@@ -27,10 +27,15 @@ def test_output_chart():
         output_t, alt.vegalite.v4.api.FacetChart
     ), "Altair Facet Chart object should be returned."
 
-def test_output_type():
+def test_output_type_vio():
 
     ## Test the type of function result
     assert visualize_outliers(df(), type='violin').columns == 5, 'Return chart is not of the given type.'
+
+def test_output_type_box():
+
+    ## Test the type of function result
+    assert visualize_outliers(df(), type='boxplot').columns == 4, 'Return chart is not of the given type.'
 
 def test_invalid_df():
     ## Test the exceptions of invalid input
@@ -46,9 +51,10 @@ def test_invalid_df_non():
 
 def test_invalid_col():
     with raises(TypeError):
-        visualize_outliers(df(), column = "gsgs")
+        visualize_outliers(df(), columns = "gsgs")
+
 
 def test_invalid_type():
     with raises(ValueError):
-        visualize_outliers(df(), type='scatter')
+        visualize_outliers(df(), type='satosugu')
         

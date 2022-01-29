@@ -1,7 +1,7 @@
 [tool.poetry]
 
 name = "py_outliers_utils"
-version = "1.2.8"
+version = "1.2.9"
 description = "Dealing with outliers"
 authors = ["scarlqq"]
 license = "MIT"
